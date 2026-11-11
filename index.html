@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catalogue de livres de la bibliothèque LOG3550.">
+    <title>Catalogue de la bibliothèque | LOG3550</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/data.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Navigation principale">
+            <a class="brand" href="#accueil">Bibliothèque LOG3550</a>
+            <ul>
+                <li><a href="#catalogue">Catalogue</a></li>
+                <li><a href="#ajouter-livre">Ajouter un livre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="accueil">
+        <section class="hero" aria-labelledby="page-title">
+            <p class="eyebrow">Lire, découvrir, partager</p>
+            <h1 id="page-title">Catalogue de la bibliothèque</h1>
+            <p>Consultez la collection, trouvez votre prochaine lecture et gérez les livres.</p>
+        </section>
+
+        <section class="content-section filters-section" aria-labelledby="filters-title">
+            <h2 id="filters-title">Rechercher et filtrer</h2>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="search-input">Titre ou auteur</label>
+                    <input type="search" id="search-input" name="search" placeholder="Ex. : Victor Hugo">
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Catégorie</label>
+                    <select id="category-filter" name="category-filter">
+                        <option value="">Toutes les catégories</option>
+                        <option value="roman">Roman</option>
+                        <option value="science">Science</option>
+                        <option value="histoire">Histoire</option>
+                        <option value="informatique">Informatique</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-select">Trier par</label>
+                    <select id="sort-select" name="sort">
+                        <option value="">Ordre par défaut</option>
+                        <option value="title-asc">Titre (A à Z)</option>
+                        <option value="title-desc">Titre (Z à A)</option>
+                        <option value="year-asc">Année (croissante)</option>
+                        <option value="year-desc">Année (décroissante)</option>
+                    </select>
+                </div>
+                <div class="filter-group checkbox-group">
+                    <input type="checkbox" id="available-filter" name="available-only">
+                    <label for="available-filter">Disponibles seulement</label>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalogue" class="content-section catalogue-section" aria-labelledby="catalogue-title">
+            <div class="section-heading">
+                <h2 id="catalogue-title">La collection</h2>
+                <p id="results-count" class="results-count" aria-live="polite" aria-atomic="true"></p>
+            </div>
+            <div id="books-container" class="books-grid" aria-live="polite"></div>
+            <p id="no-results-message" class="empty-message" hidden>Aucun livre ne correspond à vos critères.</p>
+        </section>
+
+        <section id="ajouter-livre" class="content-section form-section" aria-labelledby="form-title">
+            <h2 id="form-title">Ajouter un livre</h2>
+            <p class="form-intro">Les champs marqués d’un astérisque sont obligatoires.</p>
+            <form id="add-book-form" novalidate>
+                <div class="form-grid">
+                    <div class="form-control">
+                        <label for="title">Titre <span aria-hidden="true">*</span></label>
+                        <input type="text" id="title" name="title" required minlength="2" autocomplete="off" aria-describedby="title-error">
+                        <small class="error-message" id="title-error" aria-live="polite"></small>
+                    </div>
+                    <div class="form-control">
+                        <label for="author">Auteur <span aria-hidden="true">*</span></label>
+                        <input type="text" id="author" name="author" required minlength="2" autocomplete="off" aria-describedby="author-error">
+                        <small class="error-message" id="author-error" aria-live="polite"></small>
+                    </div>
+                    <div class="form-control">
+                        <label for="year">Année de publication <span aria-hidden="true">*</span></label>
+                        <input type="number" id="year" name="year" required min="1450" inputmode="numeric" aria-describedby="year-error">
+                        <small class="error-message" id="year-error" aria-live="polite"></small>
+                    </div>
+                    <div class="form-control">
+                        <label for="category">Catégorie <span aria-hidden="true">*</span></label>
+                        <select id="category" name="category" required aria-describedby="category-error">
+                            <option value="">Choisissez une catégorie</option>
+                            <option value="roman">Roman</option>
+                            <option value="science">Science</option>
+                            <option value="histoire">Histoire</option>
+                            <option value="informatique">Informatique</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                        <small class="error-message" id="category-error" aria-live="polite"></small>
+                    </div>
+                </div>
+                <div class="form-control availability-control">
+                    <input type="checkbox" id="available" name="available" checked>
+                    <label for="available">Disponible à l’emprunt</label>
+                </div>
+                <div class="form-actions">
+                    <button class="button button-primary" type="submit">Ajouter le livre</button>
+                    <button class="button button-secondary" type="button" id="reset-storage-btn">Réinitialiser les données</button>
+                </div>
+                <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>LOG3550 · Développement web · Devoir 1</p>
+    </footer>
+</body>
+</html>
